@@ -1,7 +1,7 @@
 document.getElementById('submitGuess').addEventListener('click', function() {
     const guess = document.getElementById('guessInput').value;
 
-    fetch('/guess', {
+    fetch('/api/guess', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

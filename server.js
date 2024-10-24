@@ -1,21 +1,21 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-require('dotenv').config();
 const app = express();
-const port = 5000;
+const path = require('path');
+require('dotenv').config();  // Load environment variables
 
-app.use(bodyParser.json());
+app.use(express.json());  // To handle JSON requests
+app.use(express.static(path.join(__dirname, 'public')));  // Serve static HTML and JS
 
 let secretNumber = Math.floor(Math.random() * 1000) + 1;
 let attempts = 10;
 let currentAttempt = 0;
-const flag = process.env.FLAG1;
 
 app.post('/guess', (req, res) => {
     const guess = req.body.guess;
+    const flag = process.env.FLAG;
 
-    if (typeof guess !== 'number') {
-        return res.status(400).json({ error: "Please provide a valid number." });
+    if (typeof guess !== 'number' || guess < 1 || guess > 1000) {
+        return res.status(400).json({ response: "Please provide a valid number between 1 and 1000." });
     }
 
     currentAttempt++;
@@ -33,6 +33,8 @@ app.post('/guess', (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Guess the Number app listening at http://localhost:${port}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
+    

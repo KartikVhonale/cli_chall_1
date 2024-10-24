@@ -1,0 +1,14 @@
+{
+    "name": "guess-the-number",
+    "version": "1.0.0",
+    "description": "Guess the Secret Number challenge",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "body-parser": "^1.19.1"
+    }
+  }
+  

@@ -12,7 +12,7 @@ let currentAttempt = 0;
 
 app.post('/guess', (req, res) => {
     const guess = req.body.guess;
-    const flag = process.env.FLAG;
+    const flag = process.env.FLAG1;
 
     if (typeof guess !== 'number' || guess < 1 || guess > 1000) {
         return res.status(400).json({ response: "Please provide a valid number between 1 and 1000." });

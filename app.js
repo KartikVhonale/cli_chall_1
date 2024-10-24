@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+require('dotenv').config();
 const app = express();
 const port = 5000;
 
@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 let secretNumber = Math.floor(Math.random() * 1000) + 1;
 let attempts = 10;
 let currentAttempt = 0;
-const flag = FLAG1;
+const flag = process.env.FLAG1;
 
 app.post('/guess', (req, res) => {
     const guess = req.body.guess;

@@ -11,6 +11,7 @@ document.getElementById('submitGuess').addEventListener('click', function() {
     .then(response => response.json())
     .then(data => {
         document.getElementById('message').textContent = data.response;
+        document.getElementById('attempts').textContent = `Attempts left: ${data.attemptsLeft}`;
     })
     .catch(err => {
         console.error('Error:', err);

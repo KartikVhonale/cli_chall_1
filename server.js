@@ -20,16 +20,18 @@ app.post('/guess', (req, res) => {
 
     currentAttempt++;
 
+    const attemptsLeft = attempts - currentAttempt;
+
     if (currentAttempt > attempts) {
-        return res.json({ response: "Sorry, you've used all your attempts." });
+        return res.json({ response: "Sorry, you've used all your attempts.", attemptsLeft: 0 });
     }
 
     if (guess < secretNumber) {
-        return res.json({ response: "Your guess is too low!" });
+        return res.json({ response: "Your guess is too low!", attemptsLeft });
     } else if (guess > secretNumber) {
-        return res.json({ response: "Your guess is too high!" });
+        return res.json({ response: "Your guess is too high!", attemptsLeft });
     } else {
-        return res.json({ response: `Correct! The flag is: ${flag}` });
+        return res.json({ response: `Correct! The flag is: ${flag}`, attemptsLeft });
     }
 });
 
@@ -37,4 +39,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-    
